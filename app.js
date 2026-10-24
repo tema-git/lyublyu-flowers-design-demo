@@ -216,7 +216,7 @@
   }
   const layer = (selector, move, rotate) => ({ el: document.querySelector(selector), move, rotate });
   pointerScene(document.querySelector('.hero'), [
-    layer('.hero-art img', 23, 1.2), layer('.art-note>span:last-child', -24, 18), layer('.hero-bloom', -42, 22)
+    layer('.hero-art img', 18, 1.0), layer('.art-note>span:last-child', -24, 18), layer('.hero-bloom', -42, 22)
   ]);
   pointerScene(document.querySelector('.feeling-strip'));
   pointerScene(document.querySelector('.moods'));
