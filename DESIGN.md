@@ -39,3 +39,12 @@ The existing finite requestAnimationFrame interpolation stops when settled, offs
 The pair game retains automatic mismatch closing after one second, six-pair victory, and reset. The bouquet constructor retains its explicit local-save action. The demo callback form retains validation, honest success copy, clearing of personal inputs and retry. Sticky header, contact anchor offsets, accent actions and transparent text selection remain.
 
 Static checks completed after this update: JavaScript syntax, Git whitespace, unique HTML IDs, absence of the removed hero label and circular arrow, twelve phrases repeated exactly twice, no asterisk glyphs, and XML parsing of both new SVG assets. Browser interaction, viewport and publication checks are owned by the parent task.
+
+
+### Rose refinement, 25 October 2026
+
+The rose has been redrawn as seven clearly separated organic petals, a small curled center, soft blush fills and a fine burgundy outline. The previous overlapping fold lines and lime hero fill are removed. All 34 inline marks, the JS-rendered game/decor marks, the standalone SVG and the favicon share the same geometry.
+
+Nominal mark sizes (desktop / mobile): hero 76 / 62 px (70 px on intermediate screens); header 32 / 27 px; note 28 / 24 px; marquee 24 / 22 px; manifesto 64 / 52 px; map 56 / 48 px. The hero's pointer travel is bounded to 20 px and its petal opening is gentle. Keyboard focus, touch feedback and reduced motion retain the established behavior.
+
+The SVG master was rasterized locally with the existing Sharp runtime and visually inspected; no raster image or new dependency was added to the site. Static checks cover SVG parsing, identical inline geometry, JS syntax and whitespace.

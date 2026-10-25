@@ -92,12 +92,11 @@ body{overflow-x:clip}.demo-notice a{text-decoration:underline;text-underline-off
 /* 25 October: a rose seen from above, used consistently as the floral signature. */
 .rose-icon{display:block;width:1em;height:1em;overflow:visible;pointer-events:none;flex-shrink:0}
 .rose-icon .rose-outer,.rose-icon .rose-middle{transform-origin:60px 60px;transition:scale .32s ease,rotate .32s ease}
-:is(a,button):is(:hover,:focus-visible) .rose-outer,.cursor-scene:is(.is-pointer-active,.is-touch-active,:focus-within)>.flower-mark .rose-outer{scale:1.09;rotate:5deg}
-:is(a,button):is(:hover,:focus-visible) .rose-middle{rotate:-7deg}
-.hero-bloom>.rose-icon{width:100%;height:100%;color:#6b244b;fill:#edff95;filter:drop-shadow(0 5px 3px #3b173315)}
-.hero-bloom .rose-outer>path:first-child{fill:#edff95;fill-opacity:1}
-.hero:is(.is-pointer-active,.is-touch-active,:focus-within) .hero-bloom .rose-outer{scale:1.09;rotate:5deg}
-.hero:is(.is-pointer-active,.is-touch-active,:focus-within) .hero-bloom .rose-middle{rotate:-9deg}
+:is(a,button):is(:hover,:focus-visible) .rose-outer,.cursor-scene:is(.is-pointer-active,.is-touch-active,:focus-within)>.flower-mark .rose-outer{scale:1.035;rotate:2deg}
+:is(a,button):is(:hover,:focus-visible) .rose-middle{rotate:-3deg}
+.hero-bloom>.rose-icon{width:100%;height:100%;filter:none}
+.hero:is(.is-pointer-active,.is-touch-active,:focus-within) .hero-bloom .rose-outer{scale:1.035;rotate:2deg}
+.hero:is(.is-pointer-active,.is-touch-active,:focus-within) .hero-bloom .rose-middle{rotate:-4deg}
 .art-note .rose-icon{width:42px;height:42px}.garden-kicker .rose-icon{width:30px;height:30px}
 .preview-dot .rose-icon{width:55px;height:55px}.card-cover>.rose-icon{width:62%;height:auto;aspect-ratio:1;max-height:78px}
 .manifesto>.flower-mark{font-size:104px}.map-bloom>.rose-icon{width:1em;height:1em}
@@ -132,12 +131,12 @@ body{overflow-x:clip}.demo-notice a{text-decoration:underline;text-underline-off
 .mood-card>.cursor-garden .garden-rose{width:145px;height:145px;opacity:.12}.mood-card .mood-art{position:relative}
 .mood-art::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 160px 210px at var(--pointer-x) var(--pointer-y),#fffaf47a,transparent 70%);opacity:0;transition:opacity .25s;pointer-events:none}
 .mood-card:is(:hover,:focus-visible,:active) .mood-art::after{opacity:1}.mood-card:is(:hover,:focus-visible,:active) .mood-name{color:#842751}
-.garden-card:is(:hover,:focus-visible) .rose-outer{scale:1.1}.garden-card{transition:background .22s,border-color .22s,box-shadow .22s}
+.garden-card:is(:hover,:focus-visible) .rose-outer{scale:1.04}.garden-card{transition:background .22s,border-color .22s,box-shadow .22s}
 .composer-visual{transition:box-shadow .3s,background-color .3s}.composer-section:is(.is-pointer-active,:focus-within) .composer-visual{box-shadow:0 0 0 10px #93a87724;background-color:#e2eccf}
 .choice-row label>span{transition:background .2s,color .2s,box-shadow .2s}.choice-row label:hover>span{box-shadow:inset 0 -3px 0 #84275166}
 .callback-panel{position:relative}.callback-copy::after{content:"";position:absolute;left:0;bottom:-23px;height:3px;width:min(290px,60%);background:linear-gradient(90deg,#edff95,transparent);translate:calc(var(--scene-x) * .4) 0;transform-origin:left;pointer-events:none;opacity:.8}
 .callback-copy{position:relative}.callback-field:hover input,.callback-field:hover select{border-color:#edff95;box-shadow:0 0 0 1px #edff9555}
-.visit.is-pointer-active .map-bloom .rose-outer{scale:1.08;rotate:7deg}.map-flower{pointer-events:none}
+.visit.is-pointer-active .map-bloom .rose-outer{scale:1.035;rotate:3deg}.map-flower{pointer-events:none}
 @media(max-width:760px){.hero-copy{padding-top:0}.hero-bottom{display:flex;margin-top:0;padding-top:27px}.hero-address-link{font-size:16px}.hero-address-link .address-hint{font-size:14px}.hero-bloom{width:105px;height:105px}.manifesto>.flower-mark{font-size:82px}.art-note .rose-icon{width:36px;height:36px}.preview-dot .rose-icon{width:44px;height:44px}.feeling-strip{grid-template-columns:minmax(0,1fr) 58px;gap:10px;padding-block:19px;font-size:27px}.feeling-group{gap:20px;padding-right:20px}.feeling-group i{width:27px;height:27px}.marquee-toggle{min-width:54px;min-height:54px}.cursor-garden .garden-rose{width:160px;height:160px}.callback-copy::after{bottom:-18px}}
 @media(prefers-reduced-motion:reduce){.feeling-strip{display:block;padding:22px 18px}.feeling-track{display:block;width:100%;animation:none!important;transform:none!important}.feeling-group{width:100%;flex-wrap:wrap;justify-content:center;padding:0;gap:14px 18px}.feeling-group+.feeling-group{display:none}.feeling-group .feeling-phrase{font-size:20px;white-space:normal}.feeling-group i{width:22px;height:22px;translate:none!important;rotate:none!important}.rose-outer,.rose-middle,.garden-rose{scale:1!important;rotate:none!important}.callback-copy::after{translate:none!important}.composer-section .composer-visual{box-shadow:none}.marquee-toggle{display:none}}
 
@@ -145,3 +144,19 @@ body{overflow-x:clip}.demo-notice a{text-decoration:underline;text-underline-off
    At 320 px the controls retain the wrap's 18 px side inset; outlines need 8 px. */
 .composer-section{overflow-x:clip;overflow-y:visible}
 .composer-grid>*{min-width:0}
+
+/* Refined rose: seven open petals, a compact center and a quieter scale. */
+.header .logo .rose-icon{width:32px;height:32px;stroke-width:3.1}
+.footer .logo .rose-icon{width:28px;height:28px;stroke-width:3.1}
+.hero-bloom{width:76px;height:76px;right:-10px;top:44px;filter:drop-shadow(0 3px 4px #6d2c4014)}
+.art-note .rose-icon{width:28px;height:28px;stroke-width:2.8}
+.feeling-group i{width:24px;height:24px}.feeling-group .rose-icon{stroke-width:3.1}
+.garden-kicker .rose-icon{width:25px;height:25px;stroke-width:2.8}
+.manifesto>.flower-mark{font-size:64px}.map-bloom>.rose-icon{width:56px;height:56px}
+.success-flower .rose-icon{width:46px;height:46px}.dialog>.flower-mark .rose-icon{width:48px;height:48px}
+.preview-dot{width:64px;height:64px}.preview-dot .rose-icon{width:42px;height:42px}
+.card-cover>.rose-icon{width:48%;max-height:56px;stroke-width:2.8}
+.cursor-garden .garden-rose{width:150px;height:150px;opacity:.11}
+.mood-card>.cursor-garden .garden-rose{width:110px;height:110px;opacity:.1}
+@media(max-width:1050px){.hero-bloom{width:70px;height:70px;right:-8px;top:34px}}
+@media(max-width:760px){.header .logo .rose-icon{width:27px;height:27px}.footer .logo .rose-icon{width:26px;height:26px}.hero-bloom{width:62px;height:62px;right:-6px;top:34px}.art-note .rose-icon{width:24px;height:24px}.feeling-group i{width:22px;height:22px}.manifesto>.flower-mark{font-size:52px}.map-bloom>.rose-icon{width:48px;height:48px}.success-flower .rose-icon{width:40px;height:40px}.dialog>.flower-mark .rose-icon{width:42px;height:42px}.preview-dot{width:52px;height:52px}.preview-dot .rose-icon{width:34px;height:34px}.card-cover>.rose-icon{max-height:48px}.cursor-garden .garden-rose{width:110px;height:110px}.mood-card>.cursor-garden .garden-rose{width:96px;height:96px}}

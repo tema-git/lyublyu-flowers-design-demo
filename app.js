@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  const roseMarkup = '<svg class="rose-icon" viewBox="0 0 120 120" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><g class="rose-outer"><path d="M60 10C72 5 84 14 87 25C102 25 111 40 105 53C116 66 109 83 95 87C90 104 73 111 60 102C46 112 28 104 24 91C8 88 2 69 11 56C4 42 15 27 29 24C33 10 50 3 60 10Z" fill="currentColor" fill-opacity=".13"/><path d="M29 24C43 20 53 24 60 32M87 25C88 40 81 48 72 53M105 53C91 53 80 61 77 72M95 87C80 89 68 84 62 77M60 102C61 88 54 80 44 76M24 91C30 77 34 66 29 55M11 56C25 55 34 45 37 35"/></g><g class="rose-middle"><path d="M60 32C72 23 87 33 83 46C96 56 84 73 72 71C67 88 48 87 43 75C28 77 23 59 33 50C29 36 45 25 60 32Z" fill="currentColor" fill-opacity=".05"/><path d="M60 32C58 43 63 50 72 53M83 46C72 44 61 49 57 58M72 71C72 61 65 57 57 58M43 75C53 72 58 67 57 58M33 50C41 57 49 59 57 58"/></g><path class="rose-heart" d="M55 44C65 38 77 48 71 58C67 66 53 69 47 60C42 53 47 43 55 44ZM55 44C51 52 56 58 63 57C69 56 67 49 62 49C58 49 57 53 60 55" fill="none"/></svg>';
+  const roseMarkup = '<svg class="rose-icon" viewBox="0 0 120 120" aria-hidden="true" focusable="false" fill="none" stroke="#863d58" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><g class="rose-outer"><path d="M35 53C25 40 30 24 46 24C51 13 68 13 77 24C92 23 100 40 90 53C79 52 68 45 60 39C50 46 42 50 35 53Z" fill="#f8dce4"/><path d="M38 43C23 38 14 50 18 64C15 79 28 91 43 88C46 74 50 62 59 54C51 47 45 44 38 43Z" fill="#f4cbd8"/><path d="M79 42C94 37 105 50 101 64C105 80 92 92 77 88C74 74 68 62 59 54C66 47 72 44 79 42Z" fill="#f7d4df"/><path d="M32 73C28 88 42 101 57 96C72 103 89 91 88 76C75 75 65 67 59 58C50 66 42 71 32 73Z" fill="#efb8ca"/></g><g class="rose-middle"><path d="M37 54C38 40 52 35 63 42C77 36 88 49 81 63C71 69 61 71 52 65C45 63 40 59 37 54Z" fill="#f6cbd7"/><path d="M41 64C40 77 54 85 66 78C80 79 87 65 80 55C68 54 55 58 41 64Z" fill="#eaa7bd"/></g><path class="rose-heart" d="M49 55C50 46 63 43 70 50C77 57 71 68 63 69C54 70 46 64 49 55Z" fill="#cb6b8b"/><path d="M52 55C55 48 65 49 68 55C72 62 62 66 57 60C54 56 59 53 63 56" fill="none" stroke="#fff0f4" stroke-width="2.2"/></svg>';
   const moods = {
     soft: { title: 'Тихое утро', feeling: 'Нежное', colors: ['#f4c5d2','#ba8baf','#e8d6b1','#f7e8e2'], core: '#8d4c66' },
     bold: { title: 'Смелый жест', feeling: 'Смелое', colors: ['#d94731','#f47854','#a92c55','#f4bd86'], core: '#592448' },
@@ -250,7 +250,7 @@
   }
   const layer = (selector, move, rotate) => ({ el: document.querySelector(selector), move, rotate });
   pointerScene(document.querySelector('.hero'), [
-    layer('.hero-art img', 18, 1.0), layer('.art-note>span:last-child', -24, 18), layer('.hero-bloom', -42, 22)
+    layer('.hero-art img', 18, 1.0), layer('.art-note>span:last-child', -10, 7), layer('.hero-bloom', -20, 10)
   ]);
   pointerScene(document.querySelector('.feeling-strip'));
   pointerScene(document.querySelector('.moods'));
