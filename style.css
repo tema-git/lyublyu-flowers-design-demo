@@ -88,3 +88,60 @@ body{overflow-x:clip}.demo-notice a{text-decoration:underline;text-underline-off
 @media(max-width:760px){.cursor-garden::before{width:180px;height:180px}.cursor-garden i{width:45px;height:26px}.cursor-garden i:nth-child(2){width:66px;height:38px}.manifesto>.cursor-garden::before{width:240px;height:240px}.manifesto>.cursor-garden i{width:70px;height:40px}.visit-actions .action-link{padding:16px 17px}.map-address{max-width:75%;left:15%;font-size:14px}}
 @media(hover:none){.cursor-scene:active>.cursor-garden{opacity:.75}.mood-card:active .mood-art{border-radius:42% 42% 0 0}.garden-card:active{background:#8b4c71}.garden-card.is-revealed:active{background:#f4d8df}.hero-image-window img{scale:1}}
 @media(prefers-reduced-motion:reduce){.cursor-garden::before{rotate:0deg}.cursor-garden i,.feeling-track i,.visit .map-street,.composer-section #bouquet-preview svg{translate:none!important;rotate:none!important}.hero-image-window img{scale:1}.garden-card .card-cover>svg,.garden-card .card-flower>svg{rotate:none!important;scale:1!important;filter:none!important}.scroll-arrow{transform:none!important}.logo>span{rotate:none!important}}
+
+/* 25 October: a rose seen from above, used consistently as the floral signature. */
+.rose-icon{display:block;width:1em;height:1em;overflow:visible;pointer-events:none;flex-shrink:0}
+.rose-icon .rose-outer,.rose-icon .rose-middle{transform-origin:60px 60px;transition:scale .32s ease,rotate .32s ease}
+:is(a,button):is(:hover,:focus-visible) .rose-outer,.cursor-scene:is(.is-pointer-active,.is-touch-active,:focus-within)>.flower-mark .rose-outer{scale:1.09;rotate:5deg}
+:is(a,button):is(:hover,:focus-visible) .rose-middle{rotate:-7deg}
+.hero-bloom>.rose-icon{width:100%;height:100%;color:#6b244b;fill:#edff95;filter:drop-shadow(0 5px 3px #3b173315)}
+.hero-bloom .rose-outer>path:first-child{fill:#edff95;fill-opacity:1}
+.hero:is(.is-pointer-active,.is-touch-active,:focus-within) .hero-bloom .rose-outer{scale:1.09;rotate:5deg}
+.hero:is(.is-pointer-active,.is-touch-active,:focus-within) .hero-bloom .rose-middle{rotate:-9deg}
+.art-note .rose-icon{width:42px;height:42px}.garden-kicker .rose-icon{width:30px;height:30px}
+.preview-dot .rose-icon{width:55px;height:55px}.card-cover>.rose-icon{width:62%;height:auto;aspect-ratio:1;max-height:78px}
+.manifesto>.flower-mark{font-size:104px}.map-bloom>.rose-icon{width:1em;height:1em}
+.hero-copy{padding-top:12px}.hero-bottom{padding-top:34px}
+.hero-address-link{display:flex;flex-direction:column;align-items:flex-start;gap:2px;font-size:16px;line-height:1.55;max-width:100%;text-underline-offset:4px}
+.hero-address-link:hover>span:nth-child(2),.hero-address-link:focus-visible>span:nth-child(2){text-decoration:underline;text-decoration-thickness:1px}
+.hero-address-link .address-hint{font-size:14px;margin-top:5px;color:#842751;border-bottom:1px solid #84275160}
+.hero-address-link:hover .address-hint{color:#3b1733;border-bottom-color:currentColor}
+
+/* A long, unbroken ribbon of twelve phrases; pause keeps the words selectable. */
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.feeling-strip{display:grid;grid-template-columns:minmax(0,1fr) 64px;gap:16px;padding:23px 16px 23px 0;overflow:hidden;font-size:clamp(28px,3.1vw,46px)}
+.feeling-window{overflow:hidden;min-width:0}
+.feeling-track{display:flex;align-items:center;justify-content:flex-start;width:max-content;min-width:0;gap:0;animation:feeling-ribbon var(--marquee-time,120s) linear infinite;animation-play-state:paused}
+.feeling-group{display:flex;align-items:center;flex-shrink:0;gap:30px;padding-right:30px;width:max-content}
+.feeling-group .feeling-phrase{white-space:nowrap;line-height:1.3;letter-spacing:-.04em}
+.feeling-group i{display:inline-flex;width:34px;height:34px;flex-shrink:0;align-items:center;justify-content:center;rotate:var(--scene-turn);translate:0 calc(var(--scene-y) * .22);color:#842751}
+.feeling-group i>.rose-icon{width:100%;height:100%}
+.feeling-strip.marquee-running .feeling-track{animation-play-state:running}
+@media(hover:hover){.feeling-window:hover .feeling-track{animation-play-state:paused}}
+.marquee-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:60px;min-height:58px;padding:5px;color:#3b1733;background:transparent;border:1px solid #3b17334a;border-radius:4px;line-height:1.1}
+.marquee-toggle svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.marquee-toggle span{font-size:16px;letter-spacing:0}
+.marquee-toggle .play-symbol{display:none}.marquee-toggle[aria-pressed=true] .play-symbol{display:block}.marquee-toggle[aria-pressed=true] .pause-symbol{display:none}
+.marquee-toggle:is(:hover,:focus-visible){background:#edff95;border-color:#3b1733}.marquee-toggle[hidden]{display:none}
+@keyframes feeling-ribbon{to{transform:translateX(-50%)}}
+
+/* More tangible botanical responses, on decoration rather than hit targets. */
+.cursor-garden .garden-rose{position:absolute;width:230px;height:230px;left:var(--pointer-x);top:var(--pointer-y);translate:-50% -50%;rotate:var(--scene-turn);opacity:.16;color:currentColor;pointer-events:none}
+.cursor-garden .garden-rose>.rose-icon{width:100%;height:100%;stroke-width:1.4}
+.cursor-garden::before{border:0;background:radial-gradient(ellipse at center,#edff9560,transparent 70%)}
+.cursor-scene:is(.is-touch-active,:focus-within)>.cursor-garden{opacity:1}
+.mood-card>.cursor-garden .garden-rose{width:145px;height:145px;opacity:.12}.mood-card .mood-art{position:relative}
+.mood-art::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 160px 210px at var(--pointer-x) var(--pointer-y),#fffaf47a,transparent 70%);opacity:0;transition:opacity .25s;pointer-events:none}
+.mood-card:is(:hover,:focus-visible,:active) .mood-art::after{opacity:1}.mood-card:is(:hover,:focus-visible,:active) .mood-name{color:#842751}
+.garden-card:is(:hover,:focus-visible) .rose-outer{scale:1.1}.garden-card{transition:background .22s,border-color .22s,box-shadow .22s}
+.composer-visual{transition:box-shadow .3s,background-color .3s}.composer-section:is(.is-pointer-active,:focus-within) .composer-visual{box-shadow:0 0 0 10px #93a87724;background-color:#e2eccf}
+.choice-row label>span{transition:background .2s,color .2s,box-shadow .2s}.choice-row label:hover>span{box-shadow:inset 0 -3px 0 #84275166}
+.callback-panel{position:relative}.callback-copy::after{content:"";position:absolute;left:0;bottom:-23px;height:3px;width:min(290px,60%);background:linear-gradient(90deg,#edff95,transparent);translate:calc(var(--scene-x) * .4) 0;transform-origin:left;pointer-events:none;opacity:.8}
+.callback-copy{position:relative}.callback-field:hover input,.callback-field:hover select{border-color:#edff95;box-shadow:0 0 0 1px #edff9555}
+.visit.is-pointer-active .map-bloom .rose-outer{scale:1.08;rotate:7deg}.map-flower{pointer-events:none}
+@media(max-width:760px){.hero-copy{padding-top:0}.hero-bottom{display:flex;margin-top:0;padding-top:27px}.hero-address-link{font-size:16px}.hero-address-link .address-hint{font-size:14px}.hero-bloom{width:105px;height:105px}.manifesto>.flower-mark{font-size:82px}.art-note .rose-icon{width:36px;height:36px}.preview-dot .rose-icon{width:44px;height:44px}.feeling-strip{grid-template-columns:minmax(0,1fr) 58px;gap:10px;padding-block:19px;font-size:27px}.feeling-group{gap:20px;padding-right:20px}.feeling-group i{width:27px;height:27px}.marquee-toggle{min-width:54px;min-height:54px}.cursor-garden .garden-rose{width:160px;height:160px}.callback-copy::after{bottom:-18px}}
+@media(prefers-reduced-motion:reduce){.feeling-strip{display:block;padding:22px 18px}.feeling-track{display:block;width:100%;animation:none!important;transform:none!important}.feeling-group{width:100%;flex-wrap:wrap;justify-content:center;padding:0;gap:14px 18px}.feeling-group+.feeling-group{display:none}.feeling-group .feeling-phrase{font-size:20px;white-space:normal}.feeling-group i{width:22px;height:22px;translate:none!important;rotate:none!important}.rose-outer,.rose-middle,.garden-rose{scale:1!important;rotate:none!important}.callback-copy::after{translate:none!important}.composer-section .composer-visual{box-shadow:none}.marquee-toggle{display:none}}
+
+/* Keep the rotating bouquet/seal inside the page without clipping field focus rings.
+   At 320 px the controls retain the wrap's 18 px side inset; outlines need 8 px. */
+.composer-section{overflow-x:clip;overflow-y:visible}
+.composer-grid>*{min-width:0}

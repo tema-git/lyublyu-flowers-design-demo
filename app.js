@@ -1,6 +1,7 @@
 (() => {
   'use strict';
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const roseMarkup = '<svg class="rose-icon" viewBox="0 0 120 120" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><g class="rose-outer"><path d="M60 10C72 5 84 14 87 25C102 25 111 40 105 53C116 66 109 83 95 87C90 104 73 111 60 102C46 112 28 104 24 91C8 88 2 69 11 56C4 42 15 27 29 24C33 10 50 3 60 10Z" fill="currentColor" fill-opacity=".13"/><path d="M29 24C43 20 53 24 60 32M87 25C88 40 81 48 72 53M105 53C91 53 80 61 77 72M95 87C80 89 68 84 62 77M60 102C61 88 54 80 44 76M24 91C30 77 34 66 29 55M11 56C25 55 34 45 37 35"/></g><g class="rose-middle"><path d="M60 32C72 23 87 33 83 46C96 56 84 73 72 71C67 88 48 87 43 75C28 77 23 59 33 50C29 36 45 25 60 32Z" fill="currentColor" fill-opacity=".05"/><path d="M60 32C58 43 63 50 72 53M83 46C72 44 61 49 57 58M72 71C72 61 65 57 57 58M43 75C53 72 58 67 57 58M33 50C41 57 49 59 57 58"/></g><path class="rose-heart" d="M55 44C65 38 77 48 71 58C67 66 53 69 47 60C42 53 47 43 55 44ZM55 44C51 52 56 58 63 57C69 56 67 49 62 49C58 49 57 53 60 55" fill="none"/></svg>';
   const moods = {
     soft: { title: 'Тихое утро', feeling: 'Нежное', colors: ['#f4c5d2','#ba8baf','#e8d6b1','#f7e8e2'], core: '#8d4c66' },
     bold: { title: 'Смелый жест', feeling: 'Смелое', colors: ['#d94731','#f47854','#a92c55','#f4bd86'], core: '#592448' },
@@ -54,7 +55,6 @@
   } catch (_) { /* Browser storage is optional. */ }
   updatePreview();
   document.querySelectorAll('[data-mini-bouquet]').forEach(el => el.innerHTML = bouquet(el.dataset.miniBouquet,2));
-  document.querySelector('.hero-bloom').innerHTML = `<svg viewBox="0 0 140 140">${flower(70,70,51,'#edff95','#602842',8)}</svg>`;
 
   const gardenFlowers = [
     { name: 'Протея', color: '#ce647f', core: '#6f2d51', kind: 'protea' },
@@ -95,7 +95,6 @@
   const gardenStatus = document.querySelector('#garden-status');
   const gardenResult = document.querySelector('#garden-result');
   let deck = [], opened = [], found = 0, turns = 0, mismatchTimer = null;
-  const cover = '<svg viewBox="0 0 80 80" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3"><path d="M40 40C7 19 22 2 40 29C58 2 73 19 40 40C73 61 58 78 40 51C22 78 7 61 40 40Z"/><circle cx="40" cy="40" r="7"/><path d="M12 40H3M68 40H77M40 12V3M40 68V77"/></g></svg>';
   function resetGarden(announce = true) {
     clearTimeout(mismatchTimer); mismatchTimer = null;
     deck = [...gardenFlowers.keys(), ...gardenFlowers.keys()];
@@ -108,7 +107,7 @@
     document.querySelector('#garden-turns').textContent = '0';
     gardenResult.hidden = true;
     gardenBoard.classList.remove('is-complete');
-    gardenBoard.innerHTML = deck.map((type, index) => `<button class="garden-card" type="button" data-card="${index}" aria-label="Карточка ${index+1}, закрыта" aria-pressed="false"><span class="card-cover" aria-hidden="true">${cover}<span>люблю</span></span><span class="card-flower" aria-hidden="true">${gardenFlower(type)}<span>${gardenFlowers[type].name}</span></span><span class="card-found" aria-hidden="true">✓</span></button>`).join('');
+    gardenBoard.innerHTML = deck.map((type, index) => `<button class="garden-card" type="button" data-card="${index}" aria-label="Карточка ${index+1}, закрыта" aria-pressed="false"><span class="card-cover" aria-hidden="true">${roseMarkup}<span>люблю</span></span><span class="card-flower" aria-hidden="true">${gardenFlower(type)}<span>${gardenFlowers[type].name}</span></span><span class="card-found" aria-hidden="true">✓</span></button>`).join('');
     gardenStatus.textContent = announce ? 'Новый сад. Карточки перемешаны — найдите все шесть пар.' : 'Откройте любые две карточки. Цветы ждут встречи.';
   }
   gardenBoard.addEventListener('click', event => {
@@ -155,6 +154,38 @@
   document.querySelector('#garden-restart').addEventListener('click', () => resetGarden());
   resetGarden(false);
 
+
+  // One complete repeated group gives an exact 50% loop; no GSAP owns this transform.
+  const feelingStrip = document.querySelector('.feeling-strip');
+  const feelingTrack = feelingStrip.querySelector('.feeling-track');
+  const marqueeToggle = feelingStrip.querySelector('.marquee-toggle');
+  let marqueePaused = false;
+  let marqueeVisible = false;
+  function updateMarquee() {
+    const staticMode = reducedMotion.matches;
+    feelingStrip.classList.toggle('marquee-running', marqueeVisible && !document.hidden && !marqueePaused && !staticMode);
+    feelingStrip.classList.toggle('marquee-paused', marqueePaused);
+    marqueeToggle.hidden = staticMode;
+    marqueeToggle.setAttribute('aria-pressed', String(marqueePaused));
+    marqueeToggle.setAttribute('aria-label', marqueePaused ? 'Продолжить бегущую строку' : 'Остановить бегущую строку');
+    marqueeToggle.querySelector('span').textContent = marqueePaused ? 'Пуск' : 'Пауза';
+  }
+  function measureMarquee() {
+    const width = feelingTrack.querySelector('.feeling-group').getBoundingClientRect().width;
+    feelingTrack.style.setProperty('--marquee-time', `${Math.max(35, width / 42)}s`);
+  }
+  marqueeToggle.addEventListener('click', () => { marqueePaused = !marqueePaused; updateMarquee(); });
+  if ('IntersectionObserver' in window) {
+    const marqueeObserver = new IntersectionObserver(entries => { marqueeVisible = entries[0].isIntersecting; updateMarquee(); });
+    marqueeObserver.observe(feelingStrip);
+  } else { marqueeVisible = true; updateMarquee(); }
+  if ('ResizeObserver' in window) new ResizeObserver(measureMarquee).observe(feelingStrip);
+  if (document.fonts) document.fonts.ready.then(measureMarquee);
+  window.addEventListener('resize', measureMarquee, { passive: true });
+  document.addEventListener('visibilitychange', updateMarquee);
+  reducedMotion.addEventListener('change', () => { updateMarquee(); measureMarquee(); });
+  measureMarquee(); updateMarquee();
+
   // Every major section has its own botanical response. Only decorative layers move:
   // links, readable copy, game hit targets and form fields keep stable coordinates.
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
@@ -164,7 +195,7 @@
     surface.classList.add('cursor-scene');
     const atmosphere = document.createElement('span');
     atmosphere.className = 'cursor-garden'; atmosphere.setAttribute('aria-hidden', 'true');
-    atmosphere.innerHTML = '<i></i><i></i><i></i>';
+    atmosphere.innerHTML = '<i></i><i></i><i></i><span class="garden-rose">' + roseMarkup + '</span>';
     surface.append(atmosphere);
     const state = { surface, layers, rect: null, visible: false, x: 0, y: 0, targetX: 0, targetY: 0, frame: 0, lastTime: 0 };
     pointerScenes.push(state);
@@ -196,7 +227,7 @@
     state.stop = () => {
       cancelAnimationFrame(state.frame); state.frame = 0; state.lastTime = 0;
       state.x = state.y = state.targetX = state.targetY = 0;
-      surface.classList.remove('is-pointer-active');
+      surface.classList.remove('is-pointer-active', 'is-touch-active');
       for (const property of ['--scene-x','--scene-y','--scene-turn','--pointer-x','--pointer-y']) surface.style.removeProperty(property);
       for (const layer of layers) { layer.el.style.removeProperty('translate'); layer.el.style.removeProperty('rotate'); }
     };
@@ -208,6 +239,9 @@
       surface.classList.add('is-pointer-active'); start();
     }, { passive: true });
     surface.addEventListener('pointerenter', () => { state.rect = null; }, { passive: true });
+    surface.addEventListener('pointerdown', event => { if (event.pointerType === 'touch') surface.classList.add('is-touch-active'); }, { passive: true });
+    surface.addEventListener('pointerup', () => surface.classList.remove('is-touch-active'), { passive: true });
+    surface.addEventListener('pointercancel', state.stop, { passive: true });
     surface.addEventListener('pointerleave', () => {
       state.rect = null; surface.classList.remove('is-pointer-active');
       if (state.frame || state.x || state.y) { state.targetX = state.targetY = 0; start(); }
@@ -245,6 +279,7 @@
   document.addEventListener('visibilitychange', stopPointerScenes);
   window.addEventListener('resize', stopPointerScenes, { passive: true });
   window.addEventListener('pagehide', stopPointerScenes);
+  window.addEventListener('blur', stopPointerScenes);
   window.addEventListener('scroll', () => { for (const state of pointerScenes) state.rect = null; }, { passive: true });
   form.addEventListener('input', event => {
     if (event.target === messageInput) { messageInput.value = messageInput.value.slice(0,120); document.querySelector('#message-count').textContent = messageInput.value.length; }
@@ -343,8 +378,6 @@
       if (context.conditions.reduce) return;
       const desktop = context.conditions.desktop;
       gsap.to('.hero-image-window', { y: desktop ? 70 : 35, rotation: desktop ? -4 : -2, ease: 'none', scrollTrigger: { trigger: '.hero-art', start: 'clamp(top 20%)', end: 'bottom top', scrub: .6 } });
-      gsap.fromTo('.feeling-track', { x: desktop ? 120 : 45 }, { x: desktop ? -160 : -150, ease: 'none', scrollTrigger: { trigger: '.feeling-strip', start: 'top bottom', end: 'bottom top', scrub: .5 } });
-      gsap.fromTo('.feeling-track i', { rotation: 0 }, { rotation: 210, ease: 'none', scrollTrigger: { trigger: '.feeling-strip', start: 'top bottom', end: 'bottom top', scrub: .5 } });
       document.querySelectorAll('.mood-art').forEach((art, index) => {
         gsap.fromTo(art, { y: desktop ? 95 + index * 25 : 45, rotation: [-7, 6, -5][index], scale: .9 }, { y: 0, rotation: 0, scale: 1, ease: 'none', scrollTrigger: { trigger: art.closest('.mood-card'), start: 'top 95%', end: 'top 35%', scrub: .55 } });
       });

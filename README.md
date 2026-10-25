@@ -30,3 +30,7 @@ Cursor reactions across all six main sections:
 Scene CSS variables: `--scene-x`, `--scene-y`, `--scene-turn`, `--pointer-x`, `--pointer-y`. Active flag: `.is-pointer-active`. Decoration uses `aria-hidden` and `pointer-events:none`. The native cursor and text selection are preserved. requestAnimationFrame stops after settling, when the scene leaves the viewport, and when the tab is hidden. Touch uses focus/active feedback; reduced motion disables movement. Pointer effects use individual translate/rotate properties on decorative layers, separate from GSAP transforms.
 
 Static checks: `node --check app.js`, `git diff --check`, old brand/contact/hours checks. The botanical kind identifier `protea` denotes a flower species, not the previous company brand. Browser QA and deployment are performed separately.
+
+## 25 October refinements
+
+See [DESIGN.md](DESIGN.md) for the original rose identity, simplified hero, long pausable phrase ribbon, reference notes and expanded interaction map.
